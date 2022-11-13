@@ -7,32 +7,52 @@
 
 import SwiftUI
 import RealityKit
+import ARKit
 
 struct ContentView : View {
+    @StateObject var viewModel : ViewModel = ViewModel()
+    @State var text: String?
     var body: some View {
-        ARViewContainer().edgesIgnoringSafeArea(.all)
+        ZStack(alignment: .bottom) {
+            ARViewContainer()
+                .edgesIgnoringSafeArea(.all)
+                .environmentObject(viewModel)
+           
+          
+            
+            VStack{
+//                if(ViewModel.anchor == nil){
+                    Text(text ?? "Premi sullo schemrmo")
+                        .onReceive(NotificationCenter.default.publisher(for: Notification.Name.taskAddedNotification)) { object in
+                            text = object as? String
+                        }
+
+//                }
+            ScrollView(.horizontal, showsIndicators: true) {
+                HStack{
+                    ForEach(viewModel.object) { object in
+                        VStack{
+                            CustomButton(object3D: object)
+                                 .environmentObject(viewModel)
+                             Spacer()
+                        }
+                      
+                    }
+                }
+                .frame(height: 200)
+            }
+            .background(Color.gray.gradient)
+            }
+               
+            
+        }
+        .ignoresSafeArea()
     }
+    
+    
 }
 
-struct ARViewContainer: UIViewRepresentable {
-    
-    func makeUIView(context: Context) -> ARView {
-        
-        let arView = ARView(frame: .zero)
-        
-        // Load the "Box" scene from the "Experience" Reality File
-        let boxAnchor = try! Experience.loadBox()
-        
-        // Add the box anchor to the scene
-        arView.scene.anchors.append(boxAnchor)
-        
-        return arView
-        
-    }
-    
-    func updateUIView(_ uiView: ARView, context: Context) {}
-    
-}
+
 
 #if DEBUG
 struct ContentView_Previews : PreviewProvider {

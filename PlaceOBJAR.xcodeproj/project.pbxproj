@@ -12,6 +12,15 @@
 		C4FF383C29213D170074698F /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = C4FF383B29213D170074698F /* Experience.rcproject */; };
 		C4FF383E29213D190074698F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4FF383D29213D190074698F /* Assets.xcassets */; };
 		C4FF384129213D190074698F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4FF384029213D190074698F /* Preview Assets.xcassets */; };
+		C4FF384A29213D720074698F /* OBJModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FF384929213D720074698F /* OBJModel.swift */; };
+		C4FF384D29213DB50074698F /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FF384C29213DB50074698F /* ViewModel.swift */; };
+		C4FF385A2921403B0074698F /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FF38592921403B0074698F /* CustomButton.swift */; };
+		C4FF385E2921665A0074698F /* LemonMeringuePie.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C4FF385D2921665A0074698F /* LemonMeringuePie.usdz */; };
+		C4FF386329216B210074698F /* AirForce.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C4FF385F29216B200074698F /* AirForce.usdz */; };
+		C4FF386429216B210074698F /* flower_tulip.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C4FF386029216B200074698F /* flower_tulip.usdz */; };
+		C4FF386529216B210074698F /* cup_saucer_set.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C4FF386129216B210074698F /* cup_saucer_set.usdz */; };
+		C4FF386629216B210074698F /* chair_swan.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C4FF386229216B210074698F /* chair_swan.usdz */; };
+		C4FF386A29217BCD0074698F /* ARViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FF3868292177790074698F /* ARViewContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +30,15 @@
 		C4FF383B29213D170074698F /* Experience.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; path = Experience.rcproject; sourceTree = "<group>"; };
 		C4FF383D29213D190074698F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C4FF384029213D190074698F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C4FF384929213D720074698F /* OBJModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OBJModel.swift; sourceTree = "<group>"; };
+		C4FF384C29213DB50074698F /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		C4FF38592921403B0074698F /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		C4FF385D2921665A0074698F /* LemonMeringuePie.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = LemonMeringuePie.usdz; sourceTree = "<group>"; };
+		C4FF385F29216B200074698F /* AirForce.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = AirForce.usdz; sourceTree = "<group>"; };
+		C4FF386029216B200074698F /* flower_tulip.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = flower_tulip.usdz; sourceTree = "<group>"; };
+		C4FF386129216B210074698F /* cup_saucer_set.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = cup_saucer_set.usdz; sourceTree = "<group>"; };
+		C4FF386229216B210074698F /* chair_swan.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = chair_swan.usdz; sourceTree = "<group>"; };
+		C4FF3868292177790074698F /* ARViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +71,10 @@
 		C4FF383629213D170074698F /* PlaceOBJAR */ = {
 			isa = PBXGroup;
 			children = (
+				C4FF384E29213DF40074698F /* 3DObjc */,
+				C4FF384B29213DA70074698F /* ViewModel */,
+				C4FF384829213D470074698F /* Model */,
+				C4FF384729213D400074698F /* View */,
 				C4FF383729213D170074698F /* AppDelegate.swift */,
 				C4FF383929213D170074698F /* ContentView.swift */,
 				C4FF383B29213D170074698F /* Experience.rcproject */,
@@ -68,6 +90,43 @@
 				C4FF384029213D190074698F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C4FF384729213D400074698F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C4FF38592921403B0074698F /* CustomButton.swift */,
+				C4FF3868292177790074698F /* ARViewContainer.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C4FF384829213D470074698F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C4FF384929213D720074698F /* OBJModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C4FF384B29213DA70074698F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C4FF384C29213DB50074698F /* ViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C4FF384E29213DF40074698F /* 3DObjc */ = {
+			isa = PBXGroup;
+			children = (
+				C4FF385F29216B200074698F /* AirForce.usdz */,
+				C4FF386229216B210074698F /* chair_swan.usdz */,
+				C4FF386129216B210074698F /* cup_saucer_set.usdz */,
+				C4FF386029216B200074698F /* flower_tulip.usdz */,
+				C4FF385D2921665A0074698F /* LemonMeringuePie.usdz */,
+			);
+			path = 3DObjc;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,8 +187,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4FF386329216B210074698F /* AirForce.usdz in Resources */,
 				C4FF384129213D190074698F /* Preview Assets.xcassets in Resources */,
+				C4FF386529216B210074698F /* cup_saucer_set.usdz in Resources */,
+				C4FF385E2921665A0074698F /* LemonMeringuePie.usdz in Resources */,
+				C4FF386429216B210074698F /* flower_tulip.usdz in Resources */,
 				C4FF383E29213D190074698F /* Assets.xcassets in Resources */,
+				C4FF386629216B210074698F /* chair_swan.usdz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,7 +204,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4FF384D29213DB50074698F /* ViewModel.swift in Sources */,
 				C4FF383A29213D170074698F /* ContentView.swift in Sources */,
+				C4FF385A2921403B0074698F /* CustomButton.swift in Sources */,
+				C4FF386A29217BCD0074698F /* ARViewContainer.swift in Sources */,
+				C4FF384A29213D720074698F /* OBJModel.swift in Sources */,
 				C4FF383829213D170074698F /* AppDelegate.swift in Sources */,
 				C4FF383C29213D170074698F /* Experience.rcproject in Sources */,
 			);
