@@ -26,4 +26,7 @@ var oggetti =  [OBJCModel(name: "LemonMeringuePie", modelName: "LemonMeringuePie
                 OBJCModel(name: "AirForce", modelName: "AirForce.usdz"),
                 OBJCModel(name: "chair_swan", modelName: "chair_swan.usdz"),
                 OBJCModel(name: "cup_saucer_set", modelName: "cup_saucer_set.usdz"),
-                OBJCModel(name: "flower_tulip", modelName: "flower_tulip.usdz")]
+                OBJCModel(name: "flower_tulip", modelName: "flower_tulip.usdz"),
+                OBJCModel(name: "toy_robot_vintage", modelName: "toy_robot_vintage.usdz"),
+                OBJCModel(name: "toy_drummer", modelName: "toy_drummer.usdz"),
+                ]

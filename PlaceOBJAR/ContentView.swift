@@ -11,7 +11,7 @@ import ARKit
 
 struct ContentView : View {
     @StateObject var viewModel : ViewModel = ViewModel()
-    @State var text: String?
+    @State var text: String = "Premi sullo schemrmo"
     var body: some View {
         ZStack(alignment: .bottom) {
             ARViewContainer()
@@ -22,9 +22,9 @@ struct ContentView : View {
             
             VStack{
 //                if(ViewModel.anchor == nil){
-                    Text(text ?? "Premi sullo schemrmo")
+                    Text(text )
                         .onReceive(NotificationCenter.default.publisher(for: Notification.Name.taskAddedNotification)) { object in
-                            text = object as? String
+                            text = object as? String ?? ""
                         }
 
 //                }

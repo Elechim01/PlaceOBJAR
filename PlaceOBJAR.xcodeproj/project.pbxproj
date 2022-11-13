@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C4C30A86292183F700F164EC /* toy_robot_vintage.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C4C30A85292183F700F164EC /* toy_robot_vintage.usdz */; };
+		C4C30A882921842200F164EC /* toy_drummer.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C4C30A872921842200F164EC /* toy_drummer.usdz */; };
 		C4FF383829213D170074698F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FF383729213D170074698F /* AppDelegate.swift */; };
 		C4FF383A29213D170074698F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FF383929213D170074698F /* ContentView.swift */; };
 		C4FF383C29213D170074698F /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = C4FF383B29213D170074698F /* Experience.rcproject */; };
@@ -24,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C4C30A85292183F700F164EC /* toy_robot_vintage.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = toy_robot_vintage.usdz; sourceTree = "<group>"; };
+		C4C30A872921842200F164EC /* toy_drummer.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = toy_drummer.usdz; sourceTree = "<group>"; };
 		C4FF383429213D170074698F /* PlaceOBJAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlaceOBJAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4FF383729213D170074698F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4FF383929213D170074698F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -120,6 +124,8 @@
 		C4FF384E29213DF40074698F /* 3DObjc */ = {
 			isa = PBXGroup;
 			children = (
+				C4C30A872921842200F164EC /* toy_drummer.usdz */,
+				C4C30A85292183F700F164EC /* toy_robot_vintage.usdz */,
 				C4FF385F29216B200074698F /* AirForce.usdz */,
 				C4FF386229216B210074698F /* chair_swan.usdz */,
 				C4FF386129216B210074698F /* cup_saucer_set.usdz */,
@@ -187,6 +193,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4C30A86292183F700F164EC /* toy_robot_vintage.usdz in Resources */,
 				C4FF386329216B210074698F /* AirForce.usdz in Resources */,
 				C4FF384129213D190074698F /* Preview Assets.xcassets in Resources */,
 				C4FF386529216B210074698F /* cup_saucer_set.usdz in Resources */,
@@ -194,6 +201,7 @@
 				C4FF386429216B210074698F /* flower_tulip.usdz in Resources */,
 				C4FF383E29213D190074698F /* Assets.xcassets in Resources */,
 				C4FF386629216B210074698F /* chair_swan.usdz in Resources */,
+				C4C30A882921842200F164EC /* toy_drummer.usdz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
