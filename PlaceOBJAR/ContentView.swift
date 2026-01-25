@@ -12,44 +12,36 @@ import ARKit
 struct ContentView : View {
     @StateObject var viewModel : ViewModel = ViewModel()
     @State var text: String = "Premi sullo schemrmo"
+    @Environment(\.isPreview) var preview
     var body: some View {
         ZStack(alignment: .bottom) {
-            ARViewContainer()
-                .edgesIgnoringSafeArea(.all)
-                .environmentObject(viewModel)
-           
-          
-            
+            if !preview {
+                ARViewContainer()
+                    .edgesIgnoringSafeArea(.all)
+                    .environmentObject(viewModel)
+            }
             VStack{
-//                if(ViewModel.anchor == nil){
-                    Text(text )
-                        .onReceive(NotificationCenter.default.publisher(for: Notification.Name.taskAddedNotification)) { object in
-                            text = object as? String ?? ""
-                        }
-
-//                }
-            ScrollView(.horizontal, showsIndicators: true) {
-                HStack{
-                    ForEach(viewModel.object) { object in
-                        VStack{
-                            CustomButton(object3D: object)
-                                 .environmentObject(viewModel)
-                             Spacer()
-                        }
-                      
+                Text(text)
+                    .onReceive(NotificationCenter.default.publisher(for: Notification.Name.taskAddedNotification)) { object in
+                        text = object as? String ?? ""
                     }
+                ScrollView(.horizontal, showsIndicators: true) {
+                    HStack{
+                        ForEach(viewModel.object) { object in
+                            VStack{
+                                CustomButton(object3D: object)
+                                    .environmentObject(viewModel)
+                                Spacer()
+                            }
+                        }
+                    }
+                    .frame(height: 200)
                 }
-                .frame(height: 200)
+                .background(Color.gray.gradient)
             }
-            .background(Color.gray.gradient)
-            }
-               
-            
         }
         .ignoresSafeArea()
     }
-    
-    
 }
 
 
@@ -61,3 +53,14 @@ struct ContentView_Previews : PreviewProvider {
     }
 }
 #endif
+
+extension EnvironmentValues {
+    var isPreview: Bool {
+        get { self[IsPreviewKey.self] }
+        set { self[IsPreviewKey.self] = newValue }
+    }
+}
+
+private struct IsPreviewKey: EnvironmentKey {
+    static let defaultValue = false
+}

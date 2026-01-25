@@ -13,7 +13,6 @@ struct CustomButton: View {
     @EnvironmentObject var model: ViewModel
     var body: some View {
         Button {
-           
             model.selectObject = object3D
         } label: {
             SceneView(scene: SCNScene(named: object3D.modelName),options: [.autoenablesDefaultLighting,.allowsCameraControl])

@@ -17,31 +17,21 @@ struct ARViewContainer: UIViewRepresentable {
     func makeUIView(context: Context) -> ARView {
         
         let arView = ARView(frame: .zero)
-    
         arView.enableTapGesture()
-
         return arView
-        
     }
-   
-    
     
     func updateUIView(_ uiView: ARView, context: Context) {
         
         uiView.scene.anchors.removeAll()
-        print("Rimuovo tutto")
-
         guard let object = viewModel.selectObject else { return}
-        guard let anchor = ViewModel.anchor else { return  }
+        guard let anchor = ViewModel.anchor else { return }
         uiView.placeObject(named: object.getModelname, for:anchor)
         
     }
-    
-    
 }
 
-extension ARView{
-    
+extension ARView {
     
     func enableTapGesture(){
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(recognizer:)))
@@ -50,10 +40,20 @@ extension ARView{
     
     @objc
     func handleTap(recognizer:UITapGestureRecognizer) {
+        
         let location = recognizer.location(in: self)
-        let results = self.raycast(from: location, allowing: .estimatedPlane, alignment: .horizontal)
+//        Remove anchor
+        if let previewAnchor = ViewModel.anchor {
+            self.session.remove(anchor: previewAnchor)
+        }
+//        Clear entity
+        if let previewEntity = ViewModel.anchorEntity {
+            self.scene.removeAnchor(previewEntity)
+            ViewModel.anchorEntity = nil
+        }
+        let results = self.raycast(from: location, allowing: .estimatedPlane, alignment: .any)
         if let firstResult = results.first{
-            let anchor = ARAnchor(name: "Piano", transform: firstResult.worldTransform)
+            let anchor =  ARAnchor(name: "Piano", transform: firstResult.worldTransform)
             ViewModel.anchor = anchor
             print(anchor)
             self.session.add(anchor: anchor)
@@ -63,15 +63,20 @@ extension ARView{
     }
     
     func placeObject(named entityName: String,for anchor: ARAnchor){
-        
-        
+       
+        let anchorEntity: AnchorEntity
+        if let previewAnchorEntity = ViewModel.anchorEntity {
+            anchorEntity = previewAnchorEntity
+        } else {
+            anchorEntity = AnchorEntity()
+            ViewModel.anchorEntity = anchorEntity
+        }
         let newEntity = try! ModelEntity.loadModel(named: entityName)
         newEntity.generateCollisionShapes(recursive: true)
         self.installGestures([.rotation,.translation,.scale],for: newEntity)
-         let anchorEntity =  AnchorEntity(anchor: anchor)
-            anchorEntity.addChild(newEntity)
-            self.scene.addAnchor(anchorEntity)
-        
-        
+//        let anchorEntity = AnchorEntity(anchor:anchor)
+
+        anchorEntity.addChild(newEntity)
+        self.scene.addAnchor(anchorEntity)
     }
 }
