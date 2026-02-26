@@ -34,7 +34,9 @@ struct Giroscope: View {
                             let spaceToMove = (circleDimension - joisticDimension) / 2
                             
                             let distance = sqrt(pow(translation.width, 2) +  pow(translation.height, 2) )
-
+                          
+                           // print(distance)
+                           // print(distance < 51)
                             
                             if distance < spaceToMove {
                                 fingerOffset = translation
