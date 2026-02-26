@@ -9,20 +9,45 @@ import SwiftUI
 import SceneKit
 
 struct CustomButton: View {
+    
+    @Environment(ViewModel.self) var viewModel
+    
     var object3D : OBJCModel
-    @EnvironmentObject var model: ViewModel
+    @Environment(\.dismiss) private var dismss
+   
+    @State var scene: SCNScene?
+    // Add cache like image caching 
     var body: some View {
-        Button {
-            model.selectObject = object3D
-        } label: {
-            SceneView(scene: SCNScene(named: object3D.modelName),options: [.autoenablesDefaultLighting,.allowsCameraControl])
-                .frame(width: 130,height: 130)
+        VStack {
+            if let scene  {
+                Button {
+                    viewModel.addEntity(object3D: object3D)
+                    dismss()
+                } label: {
+                    
+                    SceneView(scene: scene  ,options: [.autoenablesDefaultLighting,.allowsCameraControl])
+                        .frame(width: 130,height: 130)
+                    
+                }
+                .cornerRadius(30)
+                .padding(.top)
+                .padding(.horizontal)
+            } else {
+                ProgressView()
+            }
+            
         }
-        .cornerRadius(30)
-        .padding(.top)
-        .padding(.horizontal)
-
+        .onAppear {
+            scene = ObjectCache.shared.getObject(id: object3D.id)
+        }
+        
     }
+    
+    
+    
+    
+    
+
 }
 
 struct CustomButton_Previews: PreviewProvider {

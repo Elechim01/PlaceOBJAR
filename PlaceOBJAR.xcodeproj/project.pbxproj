@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C43C751C2F42345C00C6092E /* ObjectCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43C751B2F42345C00C6092E /* ObjectCache.swift */; };
+		C43C751E2F423AA700C6092E /* UltilsSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43C751D2F423AA700C6092E /* UltilsSwift.swift */; };
+		C43C75202F423BC700C6092E /* CustomBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43C751F2F423BC700C6092E /* CustomBottomSheet.swift */; };
 		C4C30A86292183F700F164EC /* toy_robot_vintage.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C4C30A85292183F700F164EC /* toy_robot_vintage.usdz */; };
 		C4C30A882921842200F164EC /* toy_drummer.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C4C30A872921842200F164EC /* toy_drummer.usdz */; };
+		C4DD8C422F4B774D008ABD5F /* Giroscope.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DD8C412F4B774D008ABD5F /* Giroscope.swift */; };
 		C4FF383829213D170074698F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FF383729213D170074698F /* AppDelegate.swift */; };
 		C4FF383A29213D170074698F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FF383929213D170074698F /* ContentView.swift */; };
 		C4FF383C29213D170074698F /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = C4FF383B29213D170074698F /* Experience.rcproject */; };
@@ -26,8 +30,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C43C751B2F42345C00C6092E /* ObjectCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectCache.swift; sourceTree = "<group>"; };
+		C43C751D2F423AA700C6092E /* UltilsSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UltilsSwift.swift; sourceTree = "<group>"; };
+		C43C751F2F423BC700C6092E /* CustomBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBottomSheet.swift; sourceTree = "<group>"; };
 		C4C30A85292183F700F164EC /* toy_robot_vintage.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = toy_robot_vintage.usdz; sourceTree = "<group>"; };
 		C4C30A872921842200F164EC /* toy_drummer.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = toy_drummer.usdz; sourceTree = "<group>"; };
+		C4DD8C412F4B774D008ABD5F /* Giroscope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Giroscope.swift; sourceTree = "<group>"; };
 		C4FF383429213D170074698F /* PlaceOBJAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlaceOBJAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4FF383729213D170074698F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4FF383929213D170074698F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -101,6 +109,8 @@
 			children = (
 				C4FF38592921403B0074698F /* CustomButton.swift */,
 				C4FF3868292177790074698F /* ARViewContainer.swift */,
+				C43C751F2F423BC700C6092E /* CustomBottomSheet.swift */,
+				C4DD8C412F4B774D008ABD5F /* Giroscope.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -117,6 +127,8 @@
 			isa = PBXGroup;
 			children = (
 				C4FF384C29213DB50074698F /* ViewModel.swift */,
+				C43C751B2F42345C00C6092E /* ObjectCache.swift */,
+				C43C751D2F423AA700C6092E /* UltilsSwift.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -213,12 +225,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4FF384D29213DB50074698F /* ViewModel.swift in Sources */,
+				C4DD8C422F4B774D008ABD5F /* Giroscope.swift in Sources */,
+				C43C75202F423BC700C6092E /* CustomBottomSheet.swift in Sources */,
 				C4FF383A29213D170074698F /* ContentView.swift in Sources */,
 				C4FF385A2921403B0074698F /* CustomButton.swift in Sources */,
 				C4FF386A29217BCD0074698F /* ARViewContainer.swift in Sources */,
 				C4FF384A29213D720074698F /* OBJModel.swift in Sources */,
 				C4FF383829213D170074698F /* AppDelegate.swift in Sources */,
 				C4FF383C29213D170074698F /* Experience.rcproject in Sources */,
+				C43C751C2F42345C00C6092E /* ObjectCache.swift in Sources */,
+				C43C751E2F423AA700C6092E /* UltilsSwift.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,7 +373,7 @@
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -389,7 +405,7 @@
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

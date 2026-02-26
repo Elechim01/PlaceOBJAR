@@ -9,6 +9,16 @@ import UIKit
 import SwiftUI
 
 @main
+struct PlaceObJAR: App {
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+        }
+    }
+    
+    
+}
+/*
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
@@ -46,4 +56,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
-
+*/

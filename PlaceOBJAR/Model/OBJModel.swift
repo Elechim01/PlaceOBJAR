@@ -16,8 +16,3 @@ struct OBJCModel:Identifiable {
         return  String(modelName.split(separator: ".").first!)
     }
 }
-
-
-extension Notification.Name{
-    static let taskAddedNotification = Notification.Name("TaskAddedNotification")
-}

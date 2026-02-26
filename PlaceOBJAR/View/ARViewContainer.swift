@@ -9,7 +9,7 @@ import SwiftUI
 import RealityKit
 import ARKit
 
-
+/*
 struct ARViewContainer: UIViewRepresentable {
     
     @EnvironmentObject var viewModel: ViewModel
@@ -80,3 +80,4 @@ extension ARView {
         self.scene.addAnchor(anchorEntity)
     }
 }
+*/
