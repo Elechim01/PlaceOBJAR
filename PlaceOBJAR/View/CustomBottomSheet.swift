@@ -20,11 +20,11 @@ struct CustomBottomSheet: View {
                 Button {
                     dismiss()
                 } label: {
-                  Image(systemName: "xmark")
+                    Image(systemName: "xmark")
                 }
                 .padding()
                 .glassEffect(.regular,in: Circle())
-
+                
             }
             .padding(.top, 10)
             
@@ -35,13 +35,8 @@ struct CustomBottomSheet: View {
             
             LazyVGrid(columns: [GridItem(),GridItem()]) {
                 ForEach(viewModel.object) { object in
-                    if ProcessInfo.isRunningInPreview {
-                        Text("Elements")
-                            .frame(width: 100, height: 150)
-                    } else {
-                         CustomButton(object3D: object)
-                           .environment(viewModel)
-                    }
+                    CustomButton(object3D: object)
+                        .environment(viewModel)
                 }
             }
         }

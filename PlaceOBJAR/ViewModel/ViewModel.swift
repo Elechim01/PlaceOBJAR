@@ -21,12 +21,20 @@ class ViewModel {
     var homeEntity: Entity = .init()
     
     var homeAncor: AnchorEntity?
+    var initialRotation: simd_quatf?
+    var initialScale: SIMD3<Float>?
         
     static var anchor: ARAnchor?
     
     static var anchorEntity: AnchorEntity?
+    // Teniamo traccia di entrambi gli angoli
+    var horizontalAngle: Double = 0 { didSet { updateRotation() } }
+    var verticalAngle: Double = 0  { didSet { updateRotation() } }
+    var rollAngle: Double = 0 { didSet { updateRotation() } }
+    
     
     func addEntity(object3D: OBJCModel) {
+    // TODO: .reality non posso essere aggiungi a modelEntity, Per i file .reality, devi caricare l'intera Entity o la Scene.
         guard let homeAncor = self.homeAncor else { return }
         Task {
             if let robot = try? await ModelEntity(named: object3D.modelName) {
@@ -53,7 +61,6 @@ class ViewModel {
             if noProblem == false {
                 listOfError[model.name] = noProblem
             }
-            
         }
         
         listOfError.enumerated().forEach { element in
@@ -62,8 +69,40 @@ class ViewModel {
         }
     }
     
-    
+    private func updateRotation() {
+        
+        let toRad = Float.pi / 180.0
+        
+        // 1. Convertiamo entrambi in radianti
+        let hGradi = Float(horizontalAngle)
+        let vRadians = Float(verticalAngle) * toRad
+        let zRadiants = Float(rollAngle) * toRad
+        
+        // 2. Creiamo i due quaternioni separati
+        // Rotazione orizzontale (attorno all'asse Y)
+        let hRotation = simd_quatf(angle: hGradi, axis: [0, 1, 0])
+        
+        // Rotazione verticale (attorno all'asse X)
+        let vRotation = simd_quatf(angle: vRadians, axis: [1, 0, 0])
+        
+//        Rotazione Roll (asse Z)
+        let zRotation = simd_quatf(angle: zRadiants, axis: [0,0,1])
+        
+        print(zRotation)
+        print(vRotation)
+        print(hRotation)
+        // 3. LA MAGIA: Moltiplichiamo i quaternioni
+        // L'ordine conta! Solitamente si fa H * V per ruotare "sul posto"
+        let finalRotation = hRotation * vRotation * zRotation
+        
+        // 4. Applichiamo la rotazione combinata
+        homeEntity.transform.rotation = finalRotation
+    }
 }
+
+
+
+
 
 var oggetti =  [
     OBJCModel(name: "LemonMeringuePie", modelName: "LemonMeringuePie.usdz"),

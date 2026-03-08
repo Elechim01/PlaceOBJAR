@@ -25,7 +25,4 @@ final class ObjectCache {
     func getObject(id: String) -> SCNScene? {
         cache.object(forKey: NSString(string: id))
     }
-    
-    
-    
 }
