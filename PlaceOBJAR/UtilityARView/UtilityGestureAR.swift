@@ -31,11 +31,11 @@ extension ViewModel {
                 guard let self = self else { return }
                 self.initialScale = nil
             }
-            
+        
         let drag = DragGesture()
             .targetedToAnyEntity()
             .onChanged(dragChanged)
-            
+        
         // 2. Usa exclusively per separare pinch e rotate, mantenendo il drag separato
         return pinch.simultaneously(with: drag)
     }
@@ -62,7 +62,7 @@ extension ViewModel {
     }
     
     func rotateChanged(_ value: EntityTargetValue<RotateGesture.Value>) {
-      let entity = homeEntity
+        let entity = homeEntity
         if initialRotation == nil { initialRotation = entity.transform.rotation }
         
         let delta = simd_quatf(angle: Float(value.rotation.radians), axis: [0,1,0])
@@ -70,7 +70,10 @@ extension ViewModel {
     }
     
     func dragChanged(_ value: EntityTargetValue<DragGesture.Value>) {
-        guard let parent = homeEntity.parent else { return }
-        homeEntity.position = value.unproject(value.location, from: .local, to: parent) ?? homeEntity.position
+        let entity = value.entity
+        guard let parent = entity.parent else { return }
+        entity.position =
+        value.unproject(value.location, from: .local, to: parent)
+        ?? entity.position
     }
 }

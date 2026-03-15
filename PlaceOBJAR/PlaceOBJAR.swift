@@ -10,9 +10,12 @@ import SwiftUI
 
 @main
 struct PlaceObJAR: App {
+    @State var viewModel: ViewModel = ViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomePageView()
+                .environment(viewModel)
         }
     }
 }
