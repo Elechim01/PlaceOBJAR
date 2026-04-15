@@ -7,9 +7,10 @@
 
 import SwiftUI
 import SceneKit
+import ElechimCore
 
 struct DetailPageView: View {
-    let objcModel: OBJCModel
+    let ARObjectModel: ARObjectModel
     @State private var scene: SCNScene?
     @State private var isSceneLoaded = false
     @Environment(\.isPreview) var isPreview
@@ -21,11 +22,10 @@ struct DetailPageView: View {
                                     .allowsCameraControl]
                 )
                 .ignoresSafeArea()
-                .opacity(isSceneLoaded ? 1 : 0) // Parte invisibile
+                .opacity(isSceneLoaded ? 1 : 0)
                 .animation(.easeIn(duration: 0.5), value: isSceneLoaded)
             } else {
                 ZStack {
-                    // Uno sfondo leggermente sfocato per preparare l'occhio
                     Color.gray.opacity(0.05).ignoresSafeArea()
                     
                     // La bolla di caricamento
@@ -57,7 +57,7 @@ struct DetailPageView: View {
     }
     
     private var glassTitle: some View {
-        Text(objcModel.name)
+        Text(ARObjectModel.name)
             .font(.subheadline)
             .fontWeight(.medium)
             .padding(.horizontal, 12)
@@ -73,7 +73,7 @@ struct DetailPageView: View {
     private func loadScene() {
         guard scene == nil else { return }
         Task {
-            let scene =  SCNScene(named: objcModel.modelName)
+            let scene =  SCNScene(named: ARObjectModel.modelName)
             await MainActor.run {
                 self.scene = scene
                 withAnimation {
@@ -86,5 +86,5 @@ struct DetailPageView: View {
 }
 
 #Preview {
-    DetailPageView(objcModel: .init(urlModel: URL(string:"http://www.google.it")!))
+    DetailPageView(ARObjectModel: .init(urlModel: URL(string:"http://www.google.it")!))
 }

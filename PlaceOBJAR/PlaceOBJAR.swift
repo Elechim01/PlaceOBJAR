@@ -10,7 +10,13 @@ import SwiftUI
 
 @main
 struct PlaceObJAR: App {
-    @State var viewModel: ViewModel = ViewModel()
+    private let dependecyInjection = DependecyInjection()
+    @State var viewModel: ViewModel
+    
+    init() {
+        let vm = dependecyInjection.makeViewModel()
+        self._viewModel = State(wrappedValue: vm)
+    }
     
     var body: some Scene {
         WindowGroup {

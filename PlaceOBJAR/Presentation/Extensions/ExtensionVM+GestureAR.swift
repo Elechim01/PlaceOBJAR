@@ -16,6 +16,9 @@ extension ViewModel {
             .targetedToAnyEntity()
             .onEnded {[weak self]  value in
                 guard let self = self else { return }
+                if value.entity is ModelEntity {
+                    self.addSelectionFeedback(to:  value.entity as! ModelEntity)
+                }
                 self.homeEntity = value.entity
                 print("Selezionata: \(value.entity.name)")
             }

@@ -135,5 +135,5 @@ struct VerticalRotationSlider: View {
 
 #Preview {
     VerticalRotationSlider()
-        .environment(ViewModel())
+        .environment(DependecyInjection().makeViewModel())
 }

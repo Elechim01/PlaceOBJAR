@@ -8,6 +8,6 @@
 import Foundation
 
 enum Router: Hashable {
-    case detail(OBJCModel)
+    case detail(ARObjectModel)
     case realityScene
 }

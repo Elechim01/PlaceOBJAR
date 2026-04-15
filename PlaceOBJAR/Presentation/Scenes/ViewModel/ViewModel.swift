@@ -11,26 +11,30 @@ import SwiftUI
 import ARKit
 import CachedAsyncImage
 import Combine
+import ElechimCore
 
 @MainActor
 @Observable
 class ViewModel {
     
-    var objects: [OBJCModel] =  []
-    var selectObject: OBJCModel?
-    
+    var objects: [ARObjectModel] = []
+    var selectObject: ARObjectModel?
     var homeEntity: Entity = .init()
-    var objectToAdd: OBJCModel? = nil
-    
+    var objectToAdd: ARObjectModel? = nil
     var homeAnchor: AnchorEntity?
-    
     var initialRotation: simd_quatf?
     var initialScale: SIMD3<Float>?
-    private var subscription: AnyCancellable?
+    var errorMessage: String = ""
+    var showError: Bool = false
+    var isTrackingPlane: Bool = false
+    var cancellables: Set<AnyCancellable> = Set<AnyCancellable>()
     private var controllers: [AnimationPlaybackController] = []
+    
     var controllersIsPlay: Bool {
         controllers.isEmpty
     }
+    
+    let idSelectionBox = "selection_box"
     
     // static var anchor: ARAnchor?
     var isImagesReady = false
@@ -38,36 +42,35 @@ class ViewModel {
     var horizontalAngle: Double = 0 { didSet { updateRotation() } }
     var verticalAngle: Double = 0  { didSet { updateRotation() } }
     var rollAngle: Double = 0 { didSet { updateRotation() } }
+    private var modelCache: [String: ModelEntity] = [:]
     
-    init() {
-        loadModel()
+    // Dependencies (Injected)
+    private let loadLibraryUseCase: LoadLibraryUseCase
+    private let generateCacheUseCase: GenerateCacheUseCase
+    
+    init(
+        loadLibraryUseCase: LoadLibraryUseCase,
+        generateCacheUseCase: GenerateCacheUseCase
+    ) {
+        self.loadLibraryUseCase = loadLibraryUseCase
+        self.generateCacheUseCase = generateCacheUseCase
+        
+        initialSetup()
     }
     
-    func loadModel() {
+    func initialSetup() {
         
-        let folderPath = Bundle.main.urls(forResourcesWithExtension: "usdz", subdirectory: nil) ?? []
-        let objects3d = folderPath.map { url in
-            OBJCModel(urlModel: url)
-        }
-        
-        self.objects = objects3d
-        generateImageModel(folderPath: folderPath)
-    }
-    
-    private func generateImageModel(folderPath urls: [URL]) {
-        // Cerchiamo il percorso della cartella "Modelli" nel bundle
-        print("Genero la cache")
-        Task() {
+        self.objects  = loadLibraryUseCase.execute()
+        Task {
             do {
-                let result = try await ArUtils.shared.generateAllThumbnails(urls: urls, size: CGSize(width: 512, height: 512))
-                result.forEach { (key,value) in
+                let urls = objects.map { $0.ulrModel }
+                let thumbnails = try await  generateCacheUseCase.execute(urls: urls)
+                thumbnails.forEach { (key,value) in
                     print("Genero thumbnail \(key)")
                     ImageCache.shared.addImage(value, for: key.absoluteString)
                 }
-                await MainActor.run {
-                    self.isImagesReady = true
-                    print("✅ Cache completata e UI notificata")
-                }
+                self.isImagesReady = true
+                print("✅ Cache completata e UI notificata")
             } catch {
                 print(error.localizedDescription)
             }
@@ -104,13 +107,12 @@ class ViewModel {
         homeEntity.transform.rotation = finalRotation
     }
     
-    
     func buttonPlayPauseAction() {
         if controllers.isEmpty {
             for animation in homeEntity.availableAnimations {
                 let controller = homeEntity.playAnimation(animation.repeat(count: 1))
                 if let scene = homeEntity.scene {
-                    subscription =  AnyCancellable(scene.subscribe(to: AnimationEvents.PlaybackCompleted.self) {[weak self]  event in
+                    scene.subscribe(to: AnimationEvents.PlaybackCompleted.self) {[weak self]  event in
                         guard let self = self else { return }
                         Task { @MainActor  [weak self] in
                             guard let self = self else { return }
@@ -118,9 +120,8 @@ class ViewModel {
                                 guard  let self = self  else { return }
                                 self.controllers.removeAll()
                             }
-                            self.subscription?.cancel()
                         }
-                    })
+                    }.store(in: &cancellables)
                 }
                 controllers.append(controller)
             }
@@ -128,10 +129,29 @@ class ViewModel {
         } else {
             controllers.forEach { $0.stop()}
             controllers.removeAll()
+            cancellables.removeAll()
         }
     }
     
-    //TODO:  AGGIUNGERE NIEW SYSTEM CACHE EntityModel
-    /// mettere un dizionari di EntityModel, e far ritornare il .clone(recursive: true)
+    func deleteEntity() {
+        homeAnchor?.removeChild(homeEntity)
+        let remainingEntities =  homeAnchor?.children.filter { $0.name != idSelectionBox
+        }
+        if let nextEntity = remainingEntities?.first as? ModelEntity {
+            homeEntity = nextEntity
+            // Opzionale: aggiungi il feedback visivo alla nuova entità selezionata
+            addSelectionFeedback(to: nextEntity)
+        }
+    }
+    
+    func loadModel(named name: String) async throws -> ModelEntity {
+        if let cachedModel = modelCache[name] {
+            return cachedModel.clone(recursive: true)
+        }
+        let newModel = try await ModelEntity(named: name)
+        self.modelCache[name] = newModel
+        return newModel.clone(recursive: true)
+        
+    }
     
 }

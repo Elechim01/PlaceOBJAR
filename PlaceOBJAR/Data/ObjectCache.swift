@@ -14,7 +14,7 @@ final class ObjectCache {
     
     private var cache = NSCache<NSString, SCNScene>()
     
-    func addObjectToCache(model: OBJCModel) -> Bool {
+    func addObjectToCache(model: ARObjectModel) -> Bool {
         guard let scene = SCNScene(named: model.modelName) else {
             return false
         }

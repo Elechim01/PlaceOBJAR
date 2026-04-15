@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ElechimCore
 
 struct CustomBottomSheet: View {
     @Environment(ViewModel.self) var viewModel
@@ -48,6 +49,6 @@ struct CustomBottomSheet: View {
 #Preview {
     SheetPreviewWrapper {
         CustomBottomSheet()
-            .environment(ViewModel())
+            .environment(DependecyInjection().makeViewModel())
     }
 }

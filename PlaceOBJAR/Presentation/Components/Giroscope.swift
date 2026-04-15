@@ -95,5 +95,5 @@ struct Giroscope: View {
 
 #Preview {
     Giroscope()
-        .environment(ViewModel())
+        .environment(DependecyInjection().makeViewModel())
 }

@@ -22,11 +22,10 @@ struct HomePageView: View {
                 
                 bottomActionButton
             }
-            .navigationTitle("Home")
             .navigationDestination(for: Router.self) { route in
                 switch route {
                 case .detail(let object):
-                    DetailPageView(objcModel: object)
+                    DetailPageView(ARObjectModel: object)
                 case .realityScene:
                     RealityPageView()
                         .environment(viewModel)
@@ -102,7 +101,7 @@ struct HomePageView: View {
 
 #Preview {
     HomePageView()
-        .environment(ViewModel())
+        .environment(DependecyInjection().makeViewModel())
 }
 
 
