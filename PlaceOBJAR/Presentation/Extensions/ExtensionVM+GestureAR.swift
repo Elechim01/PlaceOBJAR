@@ -59,8 +59,8 @@ extension ViewModel {
         
         entity.transform.scale = simd_clamp(
             newScale,
-            SIMD3<Float>(repeating: 0.0035),
-            SIMD3<Float>(repeating: 0.1)
+            SIMD3<Float>(repeating: 0.1),
+            SIMD3<Float>(repeating: 2.0) 
         )
     }
     
