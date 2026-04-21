@@ -7,6 +7,7 @@
 
 import SwiftUI
 import RealityKit
+import ElechimCore
 
 //TODO: remove Bool isAxisZ import 2 rotation
 ///create GenericVertical and move  the information in the component by super  layer
@@ -103,7 +104,7 @@ struct VerticalRotationSlider: View {
         
         // 2. Formula Matematica: Offset -> Angolo
         
-        print(visualOffset)
+        CustomLog.debug(category: .UI, "Offset della visuale \(visualOffset)")
         
         let newAngle = Double(visualOffset) * ratio
         

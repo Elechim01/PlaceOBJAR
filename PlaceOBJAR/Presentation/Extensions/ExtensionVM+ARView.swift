@@ -13,10 +13,11 @@ import ElechimCore
 extension ViewModel {
     
     func setupAR(_ content: RealityViewCameraContent) async {
+        CustomLog.debug(category: .VM, "Setup AR!!")
         let anchor = AnchorEntity(.plane(.horizontal, classification: .any, minimumBounds: [0.2,0.2]))
-        let name = objects[1].name
         do {
-            let entity = try await self.loadModel(named: name)
+            let entity = try  self.loadModel(arObject: objects[1])
+            let name = objects[1].name
             entity.name = name
             
             entity.generateCollisionShapes(recursive: true)
@@ -29,6 +30,7 @@ extension ViewModel {
             
             
         } catch  {
+            CustomLog.error(category: .VM, "\(error.localizedDescription)")
             Utils.showError(alertMessage: &self.errorMessage, showAlert: &self.showError, from: error)
         }
         
@@ -52,13 +54,13 @@ extension ViewModel {
     }
     
     func updateAR(_ content: RealityViewCameraContent) {
-        print("Update AR!!")
+        CustomLog.debug(category: .VM, "Update AR!!")
         guard let object3D = objectToAdd,
               let anchor = homeAnchor else { return }
         self.objectToAdd = nil
-        Task {
+       
             do {
-                let entity = try await self.loadModel(named: object3D.modelName)
+                let entity = try  self.loadModel(arObject: object3D)
                 entity.name = object3D.name
                 
                 entity.generateCollisionShapes(recursive: true)
@@ -69,10 +71,9 @@ extension ViewModel {
                 homeEntity = entity
                 anchor.addChild(entity)
             } catch  {
+                CustomLog.error(category: .VM, "\(error.localizedDescription)")
                 Utils.showError(alertMessage: &self.errorMessage, showAlert: &self.showError, from: error)
             }
-            
-        }
     }
     
     private func normalizeY(entity: ModelEntity) {
@@ -86,7 +87,7 @@ extension ViewModel {
         
         entity.position.y -= yOffset
         
-        print("Normalizzazione Y applicata: \(yOffset) metri")
+        CustomLog.debug(category: .VM, "Normalizzazione Y applicata: \(yOffset) metri")
     }
     
     
@@ -100,8 +101,6 @@ extension ViewModel {
         // 2. creiamo una mesh sferica delle stesse dimensioni
         
         let sphereRadius = max(bounds.extents.x, bounds.extents.y, bounds.extents.z) * 0.06
-        print(max(bounds.extents.x, bounds.extents.y, bounds.extents.z))
-        print(sphereRadius)
         let sphere = MeshResource.generateSphere(radius: sphereRadius)
         
         //3. creiamo un materiale semplice

@@ -16,6 +16,10 @@ struct ARObjectModel:Identifiable, Equatable, Hashable {
     var modelName:String
     var ulrModel: URL
     
+    var isImported: Bool {
+        ulrModel.path().contains("/Documents/")
+    }
+    
     init(urlModel: URL) {
         self.ulrModel = urlModel
         self.modelName = urlModel.lastPathComponent

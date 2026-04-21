@@ -85,10 +85,6 @@ struct Giroscope: View {
         
         let angle = atan2(translation.height, translation.width)
         viewModel.horizontalAngle = angle
-        // let rotation = simd_quatf(angle: Float(angle), axis: [0,1,0])
-        
-        //    viewModel.homeEntity.transform.rotation *= rotation
-        print(angle)
     }
     
 }

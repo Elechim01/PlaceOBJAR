@@ -21,10 +21,21 @@ class DependecyInjection {
         return GenerateCacheUseCase(repository: arRepository)
     }()
     
+    private lazy var saveExternalModelUseCase: SaveExternalModelUseCase = {
+       return SaveExternalModelUseCase()
+    }()
+    
+    private lazy var deleteModelUseCase: DeleteModelUseCase = {
+       return DeleteModelUseCase()
+    }()
+    
     @MainActor
     func makeViewModel() -> ViewModel {
         ViewModel(loadLibraryUseCase: loadLibaryUseCase,
-                  generateCacheUseCase: generateCacheUseCase)
+                  generateCacheUseCase: generateCacheUseCase,
+                  saveExternalModelUseCase: saveExternalModelUseCase,
+                  deleteModelUseCase: deleteModelUseCase
+            )
     }
     
 }

@@ -16,6 +16,8 @@ struct RealityPageView: View {
     @State private var showSheet: Bool = false
     @State private var slider: Float = 0.005
     @Environment(\.isPreview) var isPreview
+    @Environment(\.scenePhase) var schenePhase
+    @Environment(\.dismiss) var dismiss
     
     
     var body: some View {
@@ -62,6 +64,12 @@ struct RealityPageView: View {
             
         })
         .navigationBarTitleDisplayMode(.inline)
+        .onChange(of: schenePhase, { oldValue, newValue in
+            if newValue == .background {
+                CustomLog.debug(category: .UI, "Dismiss Reality View")
+                dismiss()
+            }
+        })
         .sheet(isPresented: $showSheet) {
             CustomBottomSheet()
                 .environment(viewModel)
@@ -115,8 +123,6 @@ struct RealityPageView: View {
                     .padding(.leading, 15)
                     .transition(.opacity.combined(with: .move(edge: .leading)))
             }
-            
-            
             Spacer()
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -129,7 +135,6 @@ struct RealityPageView: View {
             await  viewModel.setupAR(content)
         } update: { content in
             // SwiftUI state → RealityKit scene es colori ecc no Gesture
-            print("showSheet -> \(showSheet)")
             viewModel.updateAR(content)
         } placeholder: {
             ScanningPlaceholder()

@@ -44,6 +44,7 @@ struct CustomButton: View {
             .cornerRadius(30)
             .padding(.top)
             .padding(.horizontal)
+        
         }
         
     }

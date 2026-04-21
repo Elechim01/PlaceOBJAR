@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import RealityKit
+import ElechimCore
 
 extension ViewModel {
     // Entity selection
@@ -20,7 +21,7 @@ extension ViewModel {
                     self.addSelectionFeedback(to:  value.entity as! ModelEntity)
                 }
                 self.homeEntity = value.entity
-                print("Selezionata: \(value.entity.name)")
+                CustomLog.debug(category: .UI, "Selezionata: \(value.entity.name)")
             }
     }
     
@@ -55,13 +56,10 @@ extension ViewModel {
         // Estraiamo il valore numerico della gesture usando .magnification
         let magnificationFactor = Float(value.magnification)
         
-        let newScale = initialScale! * SIMD3<Float>(repeating: magnificationFactor)
+        // Permettiamo di rimpicciolire fino a 0.2x (20%) e ingrandire fino a 5x (500%)
+        let clampedFactor = simd_clamp(magnificationFactor, 0.1, 6.0)
         
-        entity.transform.scale = simd_clamp(
-            newScale,
-            SIMD3<Float>(repeating: 0.1),
-            SIMD3<Float>(repeating: 2.0) 
-        )
+        entity.transform.scale = initialScale! * clampedFactor
     }
     
     func rotateChanged(_ value: EntityTargetValue<RotateGesture.Value>) {

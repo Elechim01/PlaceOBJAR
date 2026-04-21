@@ -25,11 +25,12 @@
 		C42C92672F5DEE2F003C8A45 /* fender_stratocaster.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C42C92552F5DEE2F003C8A45 /* fender_stratocaster.usdz */; };
 		C42C92682F5DEE2F003C8A45 /* slide.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C42C925A2F5DEE2F003C8A45 /* slide.usdz */; };
 		C42C92692F5DEE2F003C8A45 /* ball_soccerball_realistic.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C42C92522F5DEE2F003C8A45 /* ball_soccerball_realistic.usdz */; };
-		C42C926A2F5DEE2F003C8A45 /* boxing_glove_realistic.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C42C92532F5DEE2F003C8A45 /* boxing_glove_realistic.usdz */; };
 		C43C751C2F42345C00C6092E /* ObjectCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43C751B2F42345C00C6092E /* ObjectCache.swift */; };
 		C43C75202F423BC700C6092E /* CustomBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43C751F2F423BC700C6092E /* CustomBottomSheet.swift */; };
 		C45803D02F5CA44D00527FA7 /* ExtensionVM+ARView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45803CF2F5CA44D00527FA7 /* ExtensionVM+ARView.swift */; };
 		C45803D22F5CA50F00527FA7 /* ExtensionVM+GestureAR.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45803D12F5CA50600527FA7 /* ExtensionVM+GestureAR.swift */; };
+		C45937C82F96223F00EF90DB /* SaveExternalModelUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45937C72F96223F00EF90DB /* SaveExternalModelUseCase.swift */; };
+		C45937CA2F965B9D00EF90DB /* DeleteModelUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45937C92F965B9D00EF90DB /* DeleteModelUseCase.swift */; };
 		C4600EC42F8F975900EA7D85 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4600EC32F8F975900EA7D85 /* Router.swift */; };
 		C4600EE22F8F977D00EA7D85 /* ARRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4600ECD2F8F977D00EA7D85 /* ARRepository.swift */; };
 		C4600EE72F8F977D00EA7D85 /* LoadLibraryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4600ED42F8F977D00EA7D85 /* LoadLibraryUseCase.swift */; };
@@ -81,6 +82,8 @@
 		C43C751F2F423BC700C6092E /* CustomBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBottomSheet.swift; sourceTree = "<group>"; };
 		C45803CF2F5CA44D00527FA7 /* ExtensionVM+ARView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExtensionVM+ARView.swift"; sourceTree = "<group>"; };
 		C45803D12F5CA50600527FA7 /* ExtensionVM+GestureAR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExtensionVM+GestureAR.swift"; sourceTree = "<group>"; };
+		C45937C72F96223F00EF90DB /* SaveExternalModelUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveExternalModelUseCase.swift; sourceTree = "<group>"; };
+		C45937C92F965B9D00EF90DB /* DeleteModelUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteModelUseCase.swift; sourceTree = "<group>"; };
 		C4600EC32F8F975900EA7D85 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		C4600ECD2F8F977D00EA7D85 /* ARRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARRepository.swift; sourceTree = "<group>"; };
 		C4600ED22F8F977D00EA7D85 /* ARRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARRepositoryProtocol.swift; sourceTree = "<group>"; };
@@ -180,6 +183,8 @@
 			children = (
 				C4600ED42F8F977D00EA7D85 /* LoadLibraryUseCase.swift */,
 				C4600EEF2F8FA2CD00EA7D85 /* GenerateCacheUseCase.swift */,
+				C45937C72F96223F00EF90DB /* SaveExternalModelUseCase.swift */,
+				C45937C92F965B9D00EF90DB /* DeleteModelUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -411,7 +416,6 @@
 				C42C92672F5DEE2F003C8A45 /* fender_stratocaster.usdz in Resources */,
 				C42C92682F5DEE2F003C8A45 /* slide.usdz in Resources */,
 				C42C92692F5DEE2F003C8A45 /* ball_soccerball_realistic.usdz in Resources */,
-				C42C926A2F5DEE2F003C8A45 /* boxing_glove_realistic.usdz in Resources */,
 				C4FF384129213D190074698F /* Preview Assets.xcassets in Resources */,
 				C4FF386529216B210074698F /* cup_saucer_set.usdz in Resources */,
 				C4FF385E2921665A0074698F /* LemonMeringuePie.usdz in Resources */,
@@ -434,6 +438,7 @@
 				C45803D22F5CA50F00527FA7 /* ExtensionVM+GestureAR.swift in Sources */,
 				C4DD8C422F4B774D008ABD5F /* Giroscope.swift in Sources */,
 				C43C75202F423BC700C6092E /* CustomBottomSheet.swift in Sources */,
+				C45937C82F96223F00EF90DB /* SaveExternalModelUseCase.swift in Sources */,
 				C4AAF1C42F65D89A00C24BC4 /* HomePageView.swift in Sources */,
 				C45803D02F5CA44D00527FA7 /* ExtensionVM+ARView.swift in Sources */,
 				C49796AD2F5483DC001C85E9 /* VerticalRotationSlider.swift in Sources */,
@@ -441,6 +446,7 @@
 				C4FF385A2921403B0074698F /* CustomButton.swift in Sources */,
 				C4FF384A29213D720074698F /* OBJModel.swift in Sources */,
 				C4600EC42F8F975900EA7D85 /* Router.swift in Sources */,
+				C45937CA2F965B9D00EF90DB /* DeleteModelUseCase.swift in Sources */,
 				C424ADC22F66D8BB00285443 /* DetailPageView.swift in Sources */,
 				C4FF383829213D170074698F /* PlaceOBJAR.swift in Sources */,
 				C4FF383C29213D170074698F /* Experience.rcproject in Sources */,
